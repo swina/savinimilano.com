@@ -3,7 +3,6 @@
 	   <div class="w-64 h-32 text-center border pb-4">
 		   <img style="max-width:100%;max-height:120px;width:auto" class="mt-1 scroll m-auto" height="120" v-if="images" :src="images[index]"/>
 	   </div>
-
    </div>
 </template>
 
@@ -37,7 +36,11 @@ export default {
 	},
 	mounted(){
 		this.$api.service('pagine').find({query:{title:'scroller'}}).then ( resp=> {
-			this.images = JSON.parse(resp.data[0].json).images
+			let images = JSON.parse(resp.data[0].json).images
+			this.images = images.map ( img => {
+				console.log ( img.replace("http://savinimilano.com/",""))
+				return img.replace('http://savinimilano.com/','')
+			})
 			this.scroll()
 		})
 

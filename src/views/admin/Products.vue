@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col">
-        <div class="w-full flex flex-row cursor-pointer">
+        <div class="w-full flex flex-row cursor-pointer" v-if="$store.getters.sectors.keys">
             <template v-for="(sector,index) in $store.getters.sectors.keys">
                 <div :key="'sector_' + index" class="mr-2 uppercase bg-gray-400 rounded p-2" @click="filter(sector)">
                     {{sector}}
@@ -114,6 +114,7 @@ export default {
         },
         initProducts(){
             this.data = this.$store.getters.products
+            this.loading = false
         },
         setProduct(product){
             this.id = product.Id
@@ -170,6 +171,7 @@ export default {
 
     },
     mounted(){
+        this.loading = true
         this.$products()
         this.initProducts()
     }

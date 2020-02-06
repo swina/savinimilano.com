@@ -1,0 +1,528 @@
+<!doctype html>
+
+<html lang="it">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>SAVINI</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="robots" content="index,follow" />
+	
+	<link href="http://www.savinimilano.com/css/savini.css" rel="stylesheet" type="text/css">
+	<link href="http://www.savinimilano.com/css/screen.css" rel="stylesheet" type="text/css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+	
+	<script type="text/javascript" src="http://www.savinimilano.com/js/easySlider1.7.js"></script>
+	
+	
+	<script type="text/javascript" src="http://www.savinimilano.com/js/jquery.simplyscroll.js"></script>
+	<link rel="stylesheet" href="http://www.savinimilano.com/css/jquery.simplyscroll.css" media="all" type="text/css">
+	
+	<script type="text/javascript">
+	(function($) {
+		$(function() {
+			$("#scroller").simplyScroll({speed:5});
+		});
+	})(jQuery);
+	</script>
+</head>
+
+
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" rightmargin="0">
+	
+	<div style="width:100%;z-index:90">
+		<div style="width:100%">
+			<div style="float:left;width:30%;background-color:#ffffff; height:103px;"></div>
+			<div style="float:left;width:70%;background-image:url(http://www.savinimilano.com/img/bg-header.png); height:103px;"></div>
+		</div>
+		
+			<div style="width:100%">
+				
+				<div style="float:left;width:100%; height:247px;margin-top:4px" id="fasciaSinistra"></div>
+		    </div>
+		
+    </div>
+	
+	
+	<div style="width:100%;z-index:100;position:absolute;" align="center">
+		<div style="width:1000px">
+			<div style="height:103px;width:100%;">
+          		<div style="float:left;width:344px">
+                 	<a href="http://www.savinimilano.com/index.cfm"><img src="http://www.savinimilano.com/img/logo-savini.png" alt="SAVINI" title="SAVINI"></a>
+                </div>
+                <div style="float:left;width:654px;padding-top:5px;font-size:14px">
+                 	<div style="padding-left:20px;float:left;cursor:pointer">
+                        <div class="menu" name="1,azienda" title="AZIENDA" style="float:left;padding-top:10px;width:80px;height:30px;">Azienda</div>
+                        <div style="float:left;padding-top:10px;height:30px;padding-left:40px;" class="menu" name="2,contatti" title="CONTATTI">Contatti</div>                        
+                        <div style="float:left;padding-top:10px;height:30px;padding-left:40px;" class="nomenu" name="2,contatti" title="Privacy"><a href="privacypolicy-savinimilano.html" target="_blank" style="text-decoration:none;color:black" title="Privacy Policy">Privacy Policy</a> <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script></div> 
+ 
+<div style="float:left;padding-top:6px;height:30px;padding-left:50px;display:none"><input type="text" name="cerca" id="cerca" size="25" class="campi">&nbsp;&nbsp;<span style="cursor:pointer" class="menu" name="7,cerca" style="display:none">CERCA</span></div><div style="clear:both"></div></div> 
+                </div>
+				<div style="clear:both"></div>
+          	</div>
+			
+			
+			
+			
+				<div style="width:100%;">
+					<div id="container" style="height:291px;">
+						<div id="content">
+							<div id="slider">
+							<img src="img/slide1.png" alt="SAVINI" />
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			
+			
+			
+			<div style="width:100%;margin-top:-17px;">
+				<div style="float:left;width:193px;">
+					<a href="javascript:void(0)" class="menu" name="3,industria alimentare"><img src="http://www.savinimilano.com/img/industria-alimentare.png" title="INDUSTRIA ALIMENTARE"></a>
+				</div>
+				<div style="float:left;width:185px;">
+					<a href="javascript:void(0)" class="menu" name="4,settore chimico minerario"><img src="http://www.savinimilano.com/img/settore-chimico-minerario.png" title="INDUSTRIA CHIMICA E MINERARIA"></a>
+				</div>
+				<div style="float:left;width:219px;">
+					<a href="javascript:void(0)" class="menu" name="5,industria farmaceutica"><img src="http://www.savinimilano.com/img/industria-farmaceutica.png" title="INDUSTRIA FARMACEUTICA E COSMETICA"></a>
+				</div>
+				
+					<div style="float:left;width:269px;padding-left:100px;margin-top:6px">
+						<div style="float:left;width:269px;border:1px solid #b9b9b9;height:140px">
+							<ul id="scroller">
+							    <li style="width:213px;"><img src="http://www.savinimilano.com/img/HMBV-logo-globe.png" width="213"></li>
+							    <li style="width:220px"><img src="http://www.savinimilano.com/img/JAXNEW72.jpg" width="220"></li>
+							    <li style="width:180px"><img src="http://www.savinimilano.com/img/LogoNEAGROUP.png" width="180"></li>
+							    <li style="width:120px"><img src="http://www.savinimilano.com/img/SM_FOOD_L_CMYK.png" width="120"></li>
+							    
+							    <li style="width:250px"><img src="http://www.savinimilano.com/img/Xtrutech300.jpg" width="250"></li>
+								<li style="width:270px;"><img src="http://www.savinimilano.com/img/ANDRITZ-color-print2.png" width="270"></li>
+								<li style="width:270px;"><img src="http://www.savinimilano.com/img/CHAMTOR_mg_Logo_Q.png" width="270"></li>
+								<li style="width:260px;"><img src="http://www.savinimilano.com/img/CME-logo.jpg" width="260"></li>
+								
+								<li style="width:250px;"><img src="http://www.savinimilano.com/img/CP-OPM.jpg" width="250"></li>
+								<li style="width:270px;"><img src="http://www.savinimilano.com/img/ecutec.png" width="270"></li>
+								
+								<li style="width:270px;"><img src="http://www.savinimilano.com/img/HY_Logo_RGB (Web).png" width="270"></li>
+								<li style="width:265px;"><img src="http://www.savinimilano.com/img/lecico-logo_color.jpg" width="265"></li>
+								<li style="width:260px;"><img src="http://www.savinimilano.com/img/LOG_Hebenstreit_EWAS_Transparent.png" width="260"></li>
+								<li style="width:200px;"><img src="http://www.savinimilano.com/img/Logo farbig_60mm.png" width="200"></li>
+								<li style="width:270px;"><img src="http://www.savinimilano.com/img/LOGO.jpg" width="270"></li>
+								<li style="width:245px;"><img src="http://www.savinimilano.com/img/Logo_innovation_maschinenbau.png" width="245"></li>
+								
+								<li style="width:170px;"><img src="http://www.savinimilano.com/img/MF Logo.png" width="170"></li>
+								
+								
+								<li style="width:160px;"><img src="http://www.savinimilano.com/img/Style300.jpg" width="160"></li>
+								<li style="width:175px;"><img src="http://www.savinimilano.com/img/walterlogo_Claim_4c.png" width="175"></li>
+								<li style="width:270px;"><img src="http://www.savinimilano.com/img/Breconcherry_logo_RGB_slideshow.jpg" width="270"></li>
+								<li style="width:270px;"><img src="http://www.savinimilano.com/img/Optimum-Sorting_Logo_Horiz_CMYK_slideshow.jpg" width="270"></li>
+								<li style="width:270px;"><img src="http://www.savinimilano.com/img/TM_logo_regular_RGB_slideshow.jpg"  width="270"></li>
+								<li style="width:270px;"><img src="http://www.savinimilano.com/img/Logo DINOX_petit_slideshow.jpg" width="254"></li>
+								<li style="width:270px;"><img src="http://www.savinimilano.com/img/Bos-logo-2017_slideshow.jpg" width="270"></li>
+								<li style="width:270px;"><img src="http://www.savinimilano.com/img/BHS_Logo_rgb_large_150ppi_Slideshow.jpg" width="270"></li>
+								<li style="width:270px;"><img src="http://www.savinimilano.com/img/beldem-couleur-ROUGE_Slideshow.jpg" width="270"></li>
+								<li style="width:270px;"><img src="http://www.savinimilano.com/img/aak_blue_Slideshow.jpg" width="270"></li>
+							</ul> 
+						</div>
+					</div>
+				
+			</div>
+			<div style="clear:both"></div><br><br>
+			
+	
+			
+			
+			<div style="width:100%;">
+				<div style="float:left;width:25%;">
+					<img src="http://www.savinimilano.com/img/righette.png">
+					<div style="width:70%;">
+						<div align="left" style="padding-top:4px">
+						<strong>AZIENDA</strong><br>
+						-------------------------------------------<br>
+						<span style="cursor:pointer" class="menu" name="1,azienda,chi siamo">chi siamo</span><br>
+						<span style="cursor:pointer" class="menu" name="1,azienda,storia">storia</span><br>
+						<span style="cursor:pointer" class="menu" name="1,azienda,rappresentanze">rappresentanze</span><br>
+						<span style="cursor:pointer" class="menu" name="2,contatti">contatti</span>
+						</div>
+					</div>
+				</div>
+				<div style="float:left;width:25%;">
+					<img src="http://www.savinimilano.com/img/righette.png">
+					<div style="width:70%;">
+						<div align="left" style="padding-top:4px">
+						<strong>INDUSTRIA ALIMENTARE</strong><br>
+						-------------------------------------------<br>
+						
+									<span style="cursor:pointer" class="menu" name="3,industria alimentare,Bakery">Bakery</span><br>
+								
+									<span style="cursor:pointer" class="menu" name="3,industria alimentare,Cioccolato">Cioccolato</span><br>
+								
+									<span style="cursor:pointer" class="menu" name="3,industria alimentare,Confectionery">Confectionery</span><br>
+								
+									<span style="cursor:pointer" class="menu" name="3,industria alimentare,Gelato">Gelato</span><br>
+								
+									<span style="cursor:pointer" class="menu" name="3,industria alimentare,Industria molitoria">Industria molitoria</span><br>
+								
+									<span style="cursor:pointer" class="menu" name="3,industria alimentare,Industria dei semilavorati">Industria dei semilavorati</span><br>
+								
+									<span style="cursor:pointer" class="menu" name="3,industria alimentare,Altri settori alimentari">Altri settori alimentari</span><br>
+								
+						</div>
+					</div>
+				</div>
+				<div style="float:left;width:25%;">
+					<img src="http://www.savinimilano.com/img/righette.png">
+					<div style="width:70%;">
+						<div align="left" style="padding-top:4px">
+						<strong>INDUSTRIA CHIMICA E<BR>MINERARIA</strong><br>
+						-------------------------------------------<br>
+						
+									<span style="cursor:pointer" class="menu" name="4,settore chimico minerario,Chimica">Chimica</span><br>
+								
+									<span style="cursor:pointer" class="menu" name="4,settore chimico minerario,Mineraria">Mineraria</span><br>
+								
+									<span style="cursor:pointer" class="menu" name="4,settore chimico minerario,Vernici in polvere">Vernici in polvere</span><br>
+								
+						</div>
+					</div>
+				</div>
+				<div style="float:left;width:25%;">
+					<img src="http://www.savinimilano.com/img/righette.png">
+					<div style="width:70%;">
+						<div align="left" style="padding-top:4px">
+						<strong>INDUSTRIA FARMACEUTICA<br>E COSMETICA</strong><br>
+						-------------------------------------------<br>
+						
+									<span style="cursor:pointer" class="menu" name="5,industria farmaceutica,Maschere,1">Maschere</span><br>
+									
+									<span style="cursor:pointer" class="menu" name="5,industria farmaceutica,Agglomerazione,2">Agglomerazione</span><br>
+									
+									<span style="cursor:pointer" class="menu" name="5,industria farmaceutica,Contenimento,3">Contenimento</span><br>
+									
+									<span style="cursor:pointer" class="menu" name="5,industria farmaceutica,Idroestrattori e Essiccatori,4">Idroestrattori e Essiccatori</span><br>
+									
+									<span style="cursor:pointer" class="menu" name="5,industria farmaceutica,Macinazione,5">Macinazione</span><br>
+									
+									<span style="cursor:pointer" class="menu" name="5,industria farmaceutica,Miscelatori e Omogeneizzatori,6">Miscelatori e Omogeneizzatori</span><br>
+									
+									<span style="cursor:pointer" class="menu" name="5,industria farmaceutica,Movimentazione prodotti,7">Movimentazione prodotti</span><br>
+									
+									<span style="cursor:pointer" class="menu" name="5,industria farmaceutica,Vagliatori e Classificatori,8">Vagliatori e Classificatori</span><br>
+									
+									<span style="cursor:pointer" class="menu" name="5,industria farmaceutica,Altro,9">Altro</span><br>
+									
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="clear:both"></div>
+			<br><br>
+			<div style="font-size:10px;width:100%" align="center">CLAUDIO SAVINI &amp; FIGLI S.R.L. - Via Vincenzo Monti 44, 20123 Milano - P.IVA 00750280158 - Cap. sociale Euro 46.800,00 i.v. - Registro delle imprese di Milano n. REA 407734</div>
+		</div>
+	</div>
+	
+	
+</body>
+</html>
+<input type="hidden" name="host" id="host" value="http://www.savinimilano.com/">
+<input type="hidden" name="mode" id="mode" value="index.cfm">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?forceLang=it&tracking=1&thirdparty=1&refreshPage=1&hideDetailsBtn=1&remember=60"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	//immagini CHI SIAMO
+	//$(".group1").colorbox({rel:'group1'});
+	$("#fasciaSinistra").css("background-color","#C6D8E4");
+	
+		/*$("#slider").easySlider({
+			auto: true, 
+			continuous: true
+		});*/
+	
+	var myhost = $('#host').val();
+	var currentMode = "0";
+	if(currentMode == 1){
+		var submode = "chi siamo";
+		
+			var submode = "index.cfm";
+		
+				$('#mc_rappresentanze').css({
+					"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-lungo.jpg)",
+					"background-repeat":"no-repeat",
+					"color": "#d7021a"
+				});
+			
+		$.ajax({
+              url: "http://www.savinimilano.com/azienda.cfm",
+			  type: 'GET',
+              data: "id="+submode,
+		      dataType: 'html',
+        	  cache: false,
+              success: function (txt){ 
+			  	$(".content").html(txt);
+				}
+			});
+	}
+	
+	if(currentMode == 2){
+		$.ajax({
+              url: "http://www.savinimilano.com/contatti.cfm",
+			  type: 'GET',
+		      dataType: 'html',
+        	  cache: false,
+              success: function (txt){ 
+			  	$(".content").html(txt);
+				}
+			});
+	}
+	
+	if(currentMode == 6){
+		$.ajax({
+              url: "http://www.savinimilano.com/ricambi.cfm",
+			  type: 'GET',
+		      dataType: 'html',
+        	  cache: false,
+              success: function (txt){ 
+			  	$(".content").html(txt);
+				}
+			});
+	}
+	
+	if(currentMode == 7){
+		$.ajax({
+              url: "http://www.savinimilano.com/cerca.cfm",
+			  type: 'GET',
+		      dataType: 'html',
+        	  cache: false,
+              success: function (txt){ 
+			  	$(".content").html(txt);
+				}
+			});
+	}
+	
+	if(currentMode != 2 & currentMode != 1 & currentMode != 6 & currentMode != 7){
+		if(currentMode == 3){
+			var id = "Bakery";
+			
+				id = "index.cfm";
+			
+		}
+		
+		if(currentMode == 4){
+			var id = "Chimica";
+			
+				id = "index.cfm";
+			
+		}
+		if(currentMode == 5){
+			var id = currentMode;
+		}
+		$.ajax({
+              url: "http://www.savinimilano.com/prodotti.cfm",
+			  type: 'GET',
+			  data: "id=" + id,
+		      dataType: 'html',
+        	  cache: false,
+              success: function (txt){ 
+			  	$(".content").html(txt);
+				}
+			});
+	}
+	
+	$('.menu').click(function(){
+		var ses = $(this).attr('name').split(',');
+		$('#mode').val(ses[0]);
+		if ( ses[0] != '' ){
+			if (ses.length == 3){
+				document.location =  myhost + "index.cfm/" + ses[1] + "/" + ses[2];
+			}else{
+				if(ses.length == 4){
+					document.location =  myhost + "index.cfm/" + ses[1] + "/" + ses[2] + "/" + ses[3];
+				}else{
+					document.location =  myhost + "index.cfm/" + ses[1];
+				}
+			}
+		} else {
+			document.location =  myhost;
+		}
+	});
+	
+	$('.mc').click (function(){
+		var id = $(this).attr('name');
+		//$('.slide2').show("slide", { direction: "up" }, 1000);
+		if (currentMode == 1){
+			$.ajax({
+	              url: "http://www.savinimilano.com/azienda.cfm",
+				  type: 'GET',
+	              data: "id=" + id,
+			      dataType: 'html',
+	        	  cache: false,
+	              success: function (txt){ 
+				  	$(".content").html(txt);
+					}
+				});
+		}
+		
+		if (currentMode == 3){
+			$.ajax({
+	              url: "http://www.savinimilano.com/prodotti.cfm",
+				  type: 'GET',
+	              data: "id=" + id,
+			      dataType: 'html',
+	        	  cache: false,
+	              success: function (txt){ 
+				  	$(".content").html(txt);
+					}
+				});
+		}
+		
+		if (currentMode == 4){
+			$.ajax({
+	              url: "http://www.savinimilano.com/prodotti.cfm",
+				  type: 'GET',
+	              data: "id=" + id,
+			      dataType: 'html',
+	        	  cache: false,
+	              success: function (txt){ 
+				  	$(".content").html(txt);
+					}
+				});
+		}
+		
+		$('.mc').css({
+				"background-image":"",
+				"color": "#666666"
+			});	
+			
+		if(id == "chi siamo"){
+			$('#mc_chisiamo').css({
+				"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-corto.jpg)",
+				"background-repeat":"no-repeat",
+				"background-position": "20px 0px",
+				"color": "#d7021a"
+			});
+		}
+		if(id == "storia"){
+			$('#mc_storia').css({
+				"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-corto.jpg)",
+				"background-repeat":"no-repeat",
+				"color": "#d7021a"
+			});
+		}
+		if(id == "rappresentanze"){
+			$('#mc_rappresentanze').css({
+				"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-lungo.jpg)",
+				"background-repeat":"no-repeat",
+				"color": "#d7021a"
+			});
+		}
+		
+		if(id == "Bakery"){
+			$('#mc_bakery').css({
+				"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-corto2.jpg)",
+				"background-repeat":"no-repeat",
+				"background-position": "0px 0px",
+				"color": "#d7021a"
+			});
+		}
+		if(id == "Cioccolato"){
+			$('#mc_cioccolato').css({
+				"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-medio.jpg)",
+				"background-repeat":"no-repeat",
+				"background-position": "0px 0px",
+				"color": "#d7021a"
+			});
+		}
+		if(id == "Gelato"){
+			$('#mc_gelato').css({
+				"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-corto2.jpg)",
+				"background-repeat":"no-repeat",
+				"background-position": "0px 0px",
+				"color": "#d7021a"
+			});
+		}
+		if(id == "Confectionery"){
+			$('#mc_confectionery').css({
+				"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-medio.jpg)",
+				"background-repeat":"no-repeat",
+				"background-position": "0px 0px",
+				"color": "#d7021a"
+			});
+		}
+		if(id == "Industria dei semilavorati"){
+			$('#mc_semilavorati').css({
+				"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-medio.jpg)",
+				"background-repeat":"no-repeat",
+				"background-position": "0px 0px",
+				"color": "#d7021a"
+			});
+		}
+		if(id == "Industria Molitoria"){
+			$('#mc_molitoria').css({
+				"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-corto.jpg)",
+				"background-repeat":"no-repeat",
+				"background-position": "0px 0px",
+				"color": "#d7021a"
+			});
+		}
+		if(id == "Altri settori alimentari"){
+			$('#mc_altro').css({
+				"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-corto2.jpg)",
+				"background-repeat":"no-repeat",
+				"background-position": "0px 0px",
+				"color": "#d7021a"
+			});
+		}
+		if(id == "Chimica"){
+			$('#mc_chimica').css({
+				"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-corto.jpg)",
+				"background-repeat":"no-repeat",
+				"background-position": "10px 0px",
+				"color": "#d7021a"
+			});
+		}
+		if(id == "Mineraria"){
+			$('#mc_mineraria').css({
+				"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-medio.jpg)",
+				"background-repeat":"no-repeat",
+				"background-position": "0px 0px",
+				"color": "#d7021a"
+			});
+		}
+		if(id == "Vernici in polvere"){
+			$('#mc_vernici').css({
+				"background-image":"url(http://www.savinimilano.com/img/bgmenu-obliquo-lungo.jpg)",
+				"background-repeat":"no-repeat",
+				"background-position": "0px 0px",
+				"color": "#d7021a"
+			});
+		}
+	});
+});
+
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?forceLang=it&tracking=1&thirdparty=1&always=1&hideDetailsBtn=1"></script>
+<script>
+
+document.body.addEventListener('DOMNodeInserted', function( event ) {
+	if ( event.path[0].children ){
+	if ( event.path[0].children[0] ){
+		if ( event.path[0].children[0].id == 'cookie-bar-prompt' ){
+			//console.log ( event.path[0].children[0].id )
+            if ( $('.policy_detail').length == 0){
+			$('#cookie-bar p').append('<a href="http://www.savinimilano.com/Privacy_Policy_Savini.pdf" class="policy_detail" target="_blank">Dettagli</a>');}
+		}
+	}
+	}
+}, false);
+
+
+</script> 

@@ -1,6 +1,7 @@
 <template>
     <div>
         <div class="w-full bg-black text-white text-xl">Pagine</div>
+        <h3>Pagina demo in costruzione</h3>
         <div class="flex flex-row">
             <div v-if="data" class="w-1/4 pr-2 text-left cursor-pointer">
             <template v-for="(page,index) in data">
@@ -30,6 +31,7 @@
                 </div>
             </div>
         </div>
+        <div v-if="loading" class="z-10 fixed top-0 right-0 bg-red-600 text-white p-2">Loading...</div>
     </div>
 
 </template>
@@ -40,7 +42,8 @@ export default {
         data: [],
         page: null,
         keys: null,
-        content: null
+        content: null,
+        loading: false
     }),
     methods:{
         edit(page){
@@ -56,9 +59,11 @@ export default {
             //this.content = JSON.parse(this.page.json)
         },
         init(){
+            this.loading = true
             let vm = this
             vm.$pages().then(resp=>{
                 vm.data = resp
+                this.loading = false
             })
         }
     },

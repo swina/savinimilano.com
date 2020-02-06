@@ -34,6 +34,7 @@
                 </div>
             </div>
         </template>
+        <div v-if="loading" class="z-10 fixed top-0 right-0 bg-red-600 text-white p-2">Loading...</div>
     </div>
 </template>
 
@@ -46,7 +47,8 @@ export default {
             rappresentanza: '',
             paese: '',
             url: ''
-        }
+        },
+        loading: false
     }),
     methods:{
         
@@ -77,11 +79,12 @@ export default {
             })
         },
         init(){
+            this.loading = true
             let vm = this
-            
-                vm.$rappresentanze().then ( resp=> {
-                    vm.data = resp
-                })
+            vm.$rappresentanze().then ( resp=> {
+                vm.data = resp
+                vm.loading = false
+            })
             
         }
     },

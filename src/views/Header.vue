@@ -4,10 +4,10 @@
             
                 <template v-for="(menu,index) in $store.getters.menu_header">
                     <div :key="'menu_' + index" class="w-1/4 mr-10 cursor-pointer">
-                        <img v-if="$route.path==='/' || $route.params.content" :src="$store.getters.home + menu.active" @click="$router.push('/prodotti/' + menu.name)"/>
+                        <img v-if="$route.path==='/' || $route.params.content" :src="menu.active" @click="$router.push('/prodotti/' + menu.name)"/>
 
-                        <img v-if="$route.path!='/' && !$route.params.content && $route.path.split('/')[2] != menu.name" :src="$store.getters.home + menu.off" @click="$router.push('/prodotti/' + menu.name)"/>
-                        <img v-if="$route.path!='/' && !$route.params.content && $route.path.split('/')[2] === menu.name" :src="$store.getters.home + menu.active"/>                    
+                        <img v-if="$route.path!='/' && !$route.params.content && $route.path.split('/')[2] != menu.name" :src="menu.off" @click="$router.push('/prodotti/' + menu.name)"/>
+                        <img v-if="$route.path!='/' && !$route.params.content && $route.path.split('/')[2] === menu.name" :src="menu.active"/>                    
                     </div>
                 </template>
                 <div class="w-1/4">

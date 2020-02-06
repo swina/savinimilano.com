@@ -8,7 +8,7 @@
             <div class="w-1/3 bg-grigio border-b-4" style="border-color:#cbcbcb"></div>
           </div>
           <div class="z-10 container m-auto flex flex-row items-start ">
-            <router-link to="/"><img src="http://savinimilano.com/img/logo-savini.png"/></router-link>
+            <router-link to="/"><img src="img/logo-savini.png"/></router-link>
             <div class="w-4/5 text-sm flex flex-row flex-wrap items-center bg-grigio border-b-4" style="border-color:#cbcbcb; height:46px; top:0;">
               
               <router-link :class="'mr-20 ' + active('/azienda/chi-siamo')" to="/azienda/chi-siamo">Azienda</router-link>
@@ -21,7 +21,7 @@
 
         <div v-if="$route.path==='/'">
           <div class="text-left" style="background:#c6d8e4">
-            <img class="container m-auto" src="http://savinimilano.com/img/slide1.png"/>
+            <img class="container m-auto" src="img/slide1.png"/>
           </div>
         </div>
       
@@ -43,6 +43,7 @@
         <div class="mt-10 text-center text-xs p-2">
           CLAUDIO SAVINI & FIGLI S.R.L. - Via Vincenzo Monti 44, 20123 Milano - P.IVA 00750280158 - Cap. sociale Euro 46.800,00 i.v. - Registro delle imprese di Milano n. REA 407734
         </div>
+        
       </div>
       <div v-if="$route.fullPath.indexOf('admin') > -1">
         <router-view/>

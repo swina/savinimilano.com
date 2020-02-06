@@ -9,6 +9,7 @@
                     <div class="mr-2" @click="prodotti">Prodotti</div>
                     <div class="mr-2" @click="rappresentanze">Rappresentanze</div>
                     <div class="mr-2" @click="pagine">Pagine</div>
+                    <div class="mr-2" @click="logo">Logo</div>
                 </div>
             </div>
             <div class="w-full">
@@ -23,6 +24,7 @@ import VLogin from './Login.vue'
 import VProducts from './Products.vue'
 import VPages from './Pages.vue'
 import VRappresentanze from './Rappresentanze.vue'
+import VImages from './Images.vue'
 
 export default {
     name: 'Dashboard',
@@ -30,7 +32,8 @@ export default {
         VLogin,
         VProducts,
         VPages,
-        VRappresentanze
+        VRappresentanze,
+        VImages
     },
     data:()=>({
         component: null
@@ -50,7 +53,11 @@ export default {
         },
         rappresentanze(){
             this.component = VRappresentanze
+        },
+        logo(){
+            this.component = VImages
         }
+
     }
 }
 </script>
