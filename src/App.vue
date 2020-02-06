@@ -2,8 +2,8 @@
   <div id="app" class="w-full flex flex-col">
       <div v-if="$route.fullPath.indexOf('admin') === -1">
 
-        <div class="w-full m-auto">
-          <div class="fixed w-full top-0 left-0 flex flex-row" style="min-height:46px;height:46px;z-index:-1">
+        <div class="w-full m-auto relative">
+          <div class="absolute w-full top-0 left-0 flex flex-row" style="min-height:46px;height:46px;z-index:-1">
             <div class="w-2/3 bg-transparent"></div>
             <div class="w-1/3 bg-grigio border-b-4" style="border-color:#cbcbcb"></div>
           </div>
@@ -38,12 +38,12 @@
       <div v-if="$route.fullPath.indexOf('admin') === -1">
   
         <div class="container m-auto mt-10">
-          <v-footer v-if="products"/>
+          <v-footer/>
         </div>
         <div class="mt-10 text-center text-xs p-2">
           CLAUDIO SAVINI & FIGLI S.R.L. - Via Vincenzo Monti 44, 20123 Milano - P.IVA 00750280158 - Cap. sociale Euro 46.800,00 i.v. - Registro delle imprese di Milano n. REA 407734
         </div>
-        
+
       </div>
       <div v-if="$route.fullPath.indexOf('admin') > -1">
         <router-view/>
@@ -65,6 +65,8 @@ export default {
     products: null
   }),
   beforeMount(){
+    //this.products = this.$store.getters.products
+    /*
     this.$api.service ( 'prodotti' ).find({query: { $sort : { Settore: 1 , Ordine_Campo: 1 , Divisione:1 }}}).then ( response => {
       this.products = response.data
       this.$store.dispatch ( 'SetProducts' , this.products )
@@ -78,11 +80,15 @@ export default {
     this.$api.service('pagine').find().then ( response => {
       this.$store.dispatch('SetPagine',response.data)
     })
+    */
   },
   methods:{
     active(path){
       return this.$route.fullPath === path ? 'font-bold text-red-700' : ''
     }
+  },
+  mounted(){
+    //this.products = this.$store.getters.products
   }
 }
 </script>

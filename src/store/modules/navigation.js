@@ -8,18 +8,18 @@ const navigation = {
             header: [
                 {
                     name: 'alimentare',
-                    active: 'img/industria-alimentare-on.png',
-                    off: 'img/industria-alimentare-off.png'
+                    active: '/img/industria-alimentare-on.png',
+                    off: '/img/industria-alimentare-off.png'
                 },
                 {
                     name: 'chimico-minerario',
-                    active: 'img/settore-chimico-minerario-on.png',
-                    off: 'img/settore-chimico-minerario-off.png'
+                    active: '/img/settore-chimico-minerario-on.png',
+                    off: '/img/settore-chimico-minerario-off.png'
                 },
                 {
                     name: 'farmaceutico',
-                    active: 'img/industria-farmaceutica-on.png',
-                    off: 'img/industria-farmaceutica-off.png'
+                    active: '/img/industria-farmaceutica-on.png',
+                    off: '/img/industria-farmaceutica-off.png'
                 }
             ],
             footer: [

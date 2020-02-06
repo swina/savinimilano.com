@@ -34,7 +34,7 @@
                     <span v-if="!category && applications">{{applications.keys[index]}}</span>
                     <span v-if="category">{{category}}</span>
                 </div>
-                <div class="w-full h-full" :style="background">
+                <div class="w-full h-full" :style="background + ' ;min-height:20rem;'">
                         
                         <div  v-if="categoryTypes" class="w-1/2 flex flex-col text-left text-xs p-4">
                             <template v-for="(type,index) in categoryTypes.keys">
@@ -82,6 +82,9 @@ export default {
         currentIndex: -1
     }),
     watch:{
+        background(bg){
+            console.log ( bg )
+        },
         '$route.path'(v){
             this.path = v.split('/')[2]
             this.index = 0
@@ -98,7 +101,7 @@ export default {
                 this.items[index].sort ( (a,b) => a.Ordine < b.Ordine ? -1 : 1 )
                 this.categories.push ( this.$arrayGroup ( this.items[index] , 'Categorie' , 'attivo' ) )
             })
-            this.background = 'background-image:url(' + this.$store.getters.home + 'img/bg-' + this.applications.keys[this.index].toLowerCase() + '.png); background-repeat:no-repeat; background-position:right top;'
+            this.background = 'background-image:url(/img/bg-' + this.applications.keys[this.index].toLowerCase().split(' ').join('-') + '.png); background-repeat:no-repeat; background-position:right top;'
             this.categoryTypes = null
         }
     },
@@ -161,7 +164,7 @@ export default {
             this.category = ''
             this.products = prods
             this.applications = this.$arrayGroup ( prods , 'Campo_Applicativo' , 'attivo' )
-            this.background = 'background-image:url(' + this.$store.getters.home + 'img/bg-' + this.applications.keys[this.index].toLowerCase() + '.png); background-repeat:no-repeat; background-position:right top;'
+            this.background = 'background-image:url(/img/bg-' + this.applications.keys[this.index].toLowerCase().split(' ').join('-') + '.png); background-repeat:no-repeat; background-position:right top;'
             let array =  this.products.filter ( prod => {
                 return prod['Campo_Applicativo'] === this.applications.keys[this.index]
             })  
@@ -186,7 +189,7 @@ export default {
         })
         this.products = prods
         this.applications = this.$arrayGroup ( prods , 'Campo_Applicativo' , 'attivo' )
-        this.background = 'background-image:url(' + this.$store.getters.home + 'img/bg-' + this.applications.keys[this.index].toLowerCase() + '.png); background-repeat:no-repeat; background-position:right top;'
+        this.background = 'background-image:url(/img/bg-' + this.applications.keys[this.index].toLowerCase().split(' ').join('-') + '.png); background-repeat:no-repeat; background-position:right top;'
         let array =  this.products.filter ( prod => {
             return prod['Campo_Applicativo'] === this.applications.keys[this.index]
         })    

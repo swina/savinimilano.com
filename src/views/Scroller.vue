@@ -38,8 +38,7 @@ export default {
 		this.$api.service('pagine').find({query:{title:'scroller'}}).then ( resp=> {
 			let images = JSON.parse(resp.data[0].json).images
 			this.images = images.map ( img => {
-				console.log ( img.replace("http://savinimilano.com/",""))
-				return img.replace('http://savinimilano.com/','')
+				return img.replace('http://savinimilano.com/','/')
 			})
 			this.scroll()
 		})
