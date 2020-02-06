@@ -82,9 +82,7 @@ export default {
         currentIndex: -1
     }),
     watch:{
-        background(bg){
-            console.log ( bg )
-        },
+        
         '$route.path'(v){
             this.path = v.split('/')[2]
             this.index = 0
