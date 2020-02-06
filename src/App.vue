@@ -1,37 +1,43 @@
 <template>
   <div id="app" class="w-full flex flex-col">
       <div v-if="$route.fullPath.indexOf('admin') === -1">
-        <div class="md:mx-20 flex flex-row items-start" style="height:103px;">
-          <div>
+
+        <div class="w-full m-auto">
+          <div class="fixed w-full top-0 left-0 flex flex-row" style="min-height:46px;height:46px;z-index:-1">
+            <div class="w-2/3 bg-transparent"></div>
+            <div class="w-1/3 bg-grigio border-b-4" style="border-color:#cbcbcb"></div>
+          </div>
+          <div class="z-10 container m-auto flex flex-row items-start ">
             <router-link to="/"><img src="http://savinimilano.com/img/logo-savini.png"/></router-link>
+            <div class="w-4/5 text-sm flex flex-row flex-wrap items-center bg-grigio border-b-4" style="border-color:#cbcbcb; height:46px; top:0;">
+              
+              <router-link :class="'mr-20 ' + active('/azienda/chi-siamo')" to="/azienda/chi-siamo">Azienda</router-link>
+              <router-link :class="'mr-20 ' + active('/azienda/contatti')" to="/azienda/contatti">Contatti</router-link>
+              <router-link :class="'mr-20 ' + active('/azienda/privacy-policy')" to="/azienda/privacy-policy">Privacy Policy</router-link>
+            </div>
           </div>
-          <div class="w-4/5 text-sm flex flex-row flex-wrap items-center bg-grigio border-b-4" style="border-color:#cbcbcb; height:48px; top:0;">
-            
-            <router-link :class="'mr-20 ' + active('/azienda/chi-siamo')" to="/azienda/chi-siamo">Azienda</router-link>
-            <router-link :class="'mr-20 ' + active('/azienda/contatti')" to="/azienda/contatti">Contatti</router-link>
-            <router-link :class="'mr-20 ' + active('/azienda/privacy-policy')" to="/azienda/privacy-policy">Privacy Policy</router-link>
-          </div>
+          
         </div>
 
         <div v-if="$route.path==='/'">
-          <div class="text-center" style="background:#c6d8e4">
-            <img class="m-auto" src="http://savinimilano.com/img/slide1.png"/>
+          <div class="text-left" style="background:#c6d8e4">
+            <img class="container m-auto" src="http://savinimilano.com/img/slide1.png"/>
           </div>
         </div>
       
-        <div class="mt-10 md:mx-20" v-if="$route.fullPath != '/azienda/privacy-policy'">
+        <div class="mt-10 container m-auto" v-if="$route.fullPath != '/azienda/privacy-policy'">
             <v-header/>
         </div>
       
 
-        <div class="md:mx-20">
+        <div class="container m-auto">
           <router-view/>
         </div>
       </div>
       
       <div v-if="$route.fullPath.indexOf('admin') === -1">
   
-        <div class="mt-10">
+        <div class="container m-auto mt-10">
           <v-footer v-if="products"/>
         </div>
         <div class="mt-10 text-center text-xs p-2">

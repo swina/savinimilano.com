@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-    <div class="flex flex-row justify-between">
+    <div class="flex flex-row justify-between" style="width:1000px;max-width:1000px;" >
             
                 <template v-for="(menu,index) in $store.getters.menu_header">
                     <div :key="'menu_' + index" class="w-1/4 mr-10 cursor-pointer">

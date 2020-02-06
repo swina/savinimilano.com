@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex flex-row flex-wrap justify-around">
+    <div class="flex flex-row flex-wrap justify-between" style="width:1000px;max-width:1000px;">
             <template v-for="(menu,index) in $store.getters.menu_footer">
                 <div :key="'footer_' + index" class="text-left border-double border-t-4 text-xs px-4 py-2">
                     <div class="border-b pb-2 uppercase mb-2">{{menu.title}}</div>
