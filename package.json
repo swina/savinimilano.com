@@ -4,11 +4,17 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --analyze --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production"
   },
   "dependencies": {
+    "@feathersjs/authentication-client": "^4.5.1",
+    "@feathersjs/feathers": "^4.5.1",
+    "@feathersjs/socketio-client": "^4.5.1",
     "core-js": "^3.4.4",
     "register-service-worker": "^1.6.2",
+    "socket.io-client": "^2.3.0",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3",
     "vuex": "^3.1.2"
@@ -17,6 +23,12 @@
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-pwa": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
+    "cross-env": "^7.0.0",
+    "laravel-mix": "^5.0.1",
+    "laravel-mix-purgecss": "^4.2.0",
+    "mix-tailwindcss": "^1.2.0",
+    "tailwindcss": "^1.1.4",
+    "vue-loader-plugin": "^1.3.0",
     "vue-template-compiler": "^2.6.10"
   },
   "browserslist": [
