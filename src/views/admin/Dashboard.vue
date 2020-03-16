@@ -5,11 +5,11 @@
         </div>
         <div v-if="$store.getters.logged">
             <div class="w-full h-10 p-2 items-center bg-blue-700 text-white flex flex-row justify-between">
-                <div class="w-3/4 flex flex-row cursor-pointer">
-                    <div class="mr-2" @click="prodotti">Prodotti</div>
-                    <div class="mr-2" @click="rappresentanze">Rappresentanze</div>
-                    <div class="mr-2" @click="pagine">Pagine</div>
-                    <div class="mr-2" @click="logo">Logo</div>
+                <div class="w-3/4 flex flex-row cursor-pointer text-sm">
+                    <div class="mr-2 p-1" @click="prodotti">Prodotti</div>
+                    <div class="mr-2 p-1" @click="rappresentanze">Rappresentanze</div>
+                    <div class="mr-2 p-1" @click="pagine">Pagine</div>
+                    <div class="mr-2 p-1" @click="logo">Logo</div>
                 </div>
             </div>
             <div class="w-full">

@@ -11,22 +11,69 @@
         </div>
         <div class="w-full flex flex-row">
             <div class="w-3/4 p-2">
+            <button>Gestisci Categorie</button>
+            <!--
+            <div v-if="settings && settings!=null" class="w-full">
+                <template v-for="(setting,index) in settings">
+                    <div :key="'setting_' + index" class="w-full text-left">
+                        {{setting.label}} :
+                        <template v-for="(s,i) in setting.data">
+                            <span class="tagged">{{s}}</span>
+                        </template>
+                    </div>
+                </template>
+            </div>
+            -->
             <template v-for="(product,i) in data">
                 <div v-if="product.Prodotto" :key="'product_' + i" class="flex flex-col">
-                    <div class="flex flex-row p-2 text-sm relative">
-                        <div class="w-2/3 flex flex-row p-2 border-b">
-                            {{product.Prodotto}}
+                    <div class="flex flex-row p-1 text-sm relative">
+                        <div class="w-2/3 flex flex-row p-1 border-b">
+                            {{product.Prodotto}} [{{product.Campo_Applicativo}}]
                         </div>
                         <button @click="setProduct(product)" class="absolute right-0">Modifica</button>
                     </div>
-                    <div :class="edit(product.Id) + ' w-full p-8'" v-if="product">
+                    <div :class="edit(product.Id) + ' w-full p-4 text-sm rounded bg-gray-300 '" v-if="product">
+                        <template v-for="(setting,i) in settings">
+                            <div class="w-full text-left p-2">
+                                <div class="w-1/4">
+                                    {{setting.label}} 
+                                </div>
+                                <div class="w-3/4">
+                                    <select v-model="product[setting.field]">
+                                        <template v-for="(s,n) in setting.data">
+                                            <option :value="s" :key="'s_' + setting.field + '_' + n">{{s}}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                            </div>
+                        </template>
                         <template v-for="(field , index) in fields">
-                            <div :key="'edit_' + index" class="flex flex-col p-2 rounded bg-gray-300 text-left">
+                            <div :key="'edit_' + index" class="flex flex-col p-2 text-left">
                                 <label>{{field.label}}</label>
-                                <input v-if="field.type != 'textarea' && field.type != 'file'" :type="field.type" v-model="product[field.name]"/>
+                                <input v-if="field.type === 'text'" :type="field.type" v-model="product[field.name]"/>
                                 <input v-if="field.type === 'file'" :type="field.type" @change="onFileChange"/>
                                 <textarea v-if="field.type === 'textarea' && field.type != 'file'" v-model="product[field.name]"></textarea>
-                                
+                                <!--<select v-model="product[field.name]" v-if="field.type === 'select'">
+                                    <template v-for="(applicativo,index) in applicativi.keys">
+                                        <option :value="applicativo" :key="'app_' + index">{{applicativo}}</option>
+                                    </template>
+                                </select>
+                                <select v-model="product[field.name]" v-if="field.type === 'select'">
+                                    <template v-for="(applicativo,index) in divisioni.keys">
+                                        <option :value="applicativo" :key="'app_' + index">{{applicativo}}</option>
+                                    </template>
+                                </select>
+                                <select v-model="product[field.name]" v-if="field.type === 'select'">
+                                    <template v-for="(applicativo,index) in categorie.keys">
+                                        <option :value="applicativo" :key="'app_' + index">{{applicativo}}</option>
+                                    </template>
+                                </select>
+                                <select v-model="product[field.name]" v-if="field.type === 'select' && field.name === ''">
+                                    <template v-for="(applicativo,index) in tipo.keys">
+                                        <option :value="applicativo" :key="'app_' + index">{{applicativo}}</option>
+                                    </template>
+                                </select>
+                                -->
                             </div>
                         </template>
                         <button @click="save(i)">Salva</button>
@@ -54,6 +101,11 @@ export default {
         id: null,
         product: null,
         removeImage: false,
+        applicativi: null,
+        divisioni: null,
+        categorie:null,
+        tipo:null,
+        settings:null,
         image: '',
         fields:[
             {
@@ -61,6 +113,32 @@ export default {
                 label: 'Prodotto',
                 type: 'text'
             },
+            /*
+            {
+                name: 'Campo_Applicativo',
+                label: 'Campo Applicativo',
+                type: 'select',
+                data: 'applicativi'
+            },
+             {
+                name: 'Divisione',
+                label: 'Divisione',
+                type: 'select',
+                data: 'divisioni'
+            },
+            {
+                name: 'Categorie',
+                label: 'Categoria',
+                type: 'select',
+                data: 'categorie'
+            },
+            {
+                name: 'Tipo_prodotto',
+                label: 'Tipo',
+                type: 'select',
+                data: 'tipo'
+            },
+            */
             {
                 name: 'description',
                 label: 'Descrizione',
@@ -93,6 +171,17 @@ export default {
                 return prod.Settore === sector && prod.attivo === 1 && prod.Settore.length > 0
             })
             this.data.sort ( (a,b) => a.Prodotto < b.Prodotto ? -1 : 1 )
+            this.applicativi = this.$arrayGroup(this.data,'Campo_Applicativo','attivo')
+            this.divisioni = this.$arrayGroup(this.data,'Divisione','attivo')
+            this.categorie = this.$arrayGroup(this.data,'Categorie','attivo')
+            this.tipo = this.$arrayGroup(this.data,'Tipo_prodotto','attivo')
+            
+            this.settings = [
+                { label: 'Campo Applicativo' , field: 'Campo_Applicativo' , data: this.applicativi.keys },
+                { label: 'Divisione' , field: 'Divisione' , data: this.divisioni.keys },
+                { label: 'Categorie' , field: 'Categorie' , data: this.categorie.keys } ,
+                { label: 'Tipo prodotto' , field: 'Tipo_prodotto' , data: this.tipo.keys }
+            ]
             this.search = ''
         },
         filterSearch(str){

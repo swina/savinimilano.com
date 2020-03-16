@@ -38,8 +38,16 @@ input[type="text"] {
   @apply p-1 rounded border
 }
 
+select {
+  @apply p-1 rounded border
+}
+
 .bg-grigio {
   background: #e1e1e1;
+}
+
+.tagged {
+  @apply bg-gray-200 rounded p-1 mr-2;
 }
 
 .product-title {
