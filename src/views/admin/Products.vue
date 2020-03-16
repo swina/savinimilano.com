@@ -53,6 +53,7 @@
                                 <input v-if="field.type === 'text'" :type="field.type" v-model="product[field.name]"/>
                                 <input v-if="field.type === 'file'" :type="field.type" @change="onFileChange"/>
                                 <textarea v-if="field.type === 'textarea' && field.type != 'file'" v-model="product[field.name]"></textarea>
+                                <input v-if="field.type === 'checkbox'" :type="field.type" v-model="product[field.name]"/>
                                 <!--<select v-model="product[field.name]" v-if="field.type === 'select'">
                                     <template v-for="(applicativo,index) in applicativi.keys">
                                         <option :value="applicativo" :key="'app_' + index">{{applicativo}}</option>
