@@ -26,6 +26,7 @@ import VPages from './Pages.vue'
 import VRappresentanze from './Rappresentanze.vue'
 import VImages from './Images.vue'
 
+
 export default {
     name: 'Dashboard',
     components: {
