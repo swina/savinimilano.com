@@ -9,7 +9,9 @@ const getters = {
   sectors:      state => state.products.sectors ,
   categories:   state => state.products.categories,
   products:     state => state.products.products,
-  adminCategories: state => state.products.adminCategories
+  adminCategories: state => state.products.adminCategories,
+  images:       state => state.navigation.images,
+  scroller:     state => state.navigation.scroller
 }
 
 export default getters

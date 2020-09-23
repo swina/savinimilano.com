@@ -1,19 +1,27 @@
 <template>
     <div class="w-full flex flex-col">
-        <div class="w-full bg-black text-white text-xl">Immagini</div>
-        <div>
-            <img :src="imageSrc" v-if="imageSrc" class="w-64 h-auto"/><button v-if="imageSrc" @click="save">Salva</button>
-        </div>
-        <div class="flex flex-row flex-wrap p-2">
-            <div class="w-full border p-2 my-2 mr-2 bg-gray-400 flex flex-col items-center">
-                Carica immagine: <input type="file" class="imageUpload w-30" @change="uploadImage"/>
+        <div class="w-full bg-black text-white text-xl">Scroller</div>
+        <div class="w-64 h-32 text-center border pb-4 m-auto" v-if="scroller">
+		   <img style="max-width:100%;max-height:120px;width:auto" class="mt-1 scroll m-auto" height="120" v-if="images && index < images.length" :src="images[index].image"/>
+	    </div>
+        <div class="w-full flex flex-row flex-wrap p-2 m-auto justify-center">
+            <div v-for="(img,i) in images" class="relative w-20 h-20 rounded border p-1 mr-2 items-center mb-2">
+                <img :src="img.image" class="w-30 h-auto max-h-100 m-auto" style="max-height:100%"/>
+                <div class="text-xs absolute hover:bg-red-500 hover:text-white top-0 right-0 cursor-pointer bg-gray-300 mr-1 rounded-full h-4 w-4" @click="imageIsScroller(img.id,0),images.splice(i,1),ids.splice(i,1),index=i-1">X</div>
             </div>
+        </div>
+        <div class="bg-gray-200"><h4>Aggiungi Immagini</h4></div>
+        <div class="flex flex-row flex-wrap p-2 h-64 overflow-y-auto">
+            
             <div v-for="(img,i) in uriImages" class="relative w-32 h-32 rounded border p-1 mr-2 flex flex-col items-center mb-2">
                 <img :src="img.image" class="w-30 h-auto max-h-100 m-auto" style="max-height:100%"/>
-                <div class="text-xs absolute hover:bg-red-500 hover:text-white top-0 right-0 cursor-pointer bg-gray-300 mr-1 rounded-full h-4 w-4" @click="current=i,modal=!modal">X</div>
+                <div class="text-xs absolute hover:bg-red-500 hover:text-white top-0 right-0 cursor-pointer bg-gray-300 mr-1 rounded-full h-4 w-4" @click="imageIsScroller(img.id,1),images.push({id: img.id , image: img.image})">+</div>
             </div>
             
         </div>
+        <div class="w-full border p-2 my-2 mr-2 bg-gray-400 flex flex-col items-center">
+                Carica immagine: <input type="file" class="imageUpload w-30" @change="uploadImage"/>
+            </div>
         <!--
         <template v-for="(img, index) in images">
             <div :key="'image_' + index" class="w-full flex flex-row items-center border-b p-2">
@@ -39,11 +47,15 @@
 </template>
 
 <script>
+import scroller from '@/views/Scroller'
 export default {
-    name: 'Images',
+    name: 'Scroller',
+    components: { scroller },
     data:()=>({
         modal: false,
-        images: null,
+        ids:[],
+        images: [],
+        index: 0,
         page: null,
         id: null,
         loading: false,
@@ -52,19 +64,13 @@ export default {
         uriImages: null,
         current: null
     }),
+    computed:{
+        scroller(){
+            this.images = this.$store.getters['scroller']
+            return true
+        }
+    },
     methods:{
-        /*
-        deleteImage(index){
-            this.images.slice(index,1)
-            let object = {
-                images: this.images
-            }
-            this.page.json = JSON.stringify(object)
-            this.$api.service('pagine').patch ( this.id , this.page ).then ( resp => {
-                console.log ( resp )
-            })
-        },
-        */
         uploadImage: function() {
             let vm = this    
             var file = document
@@ -106,31 +112,41 @@ export default {
                 this.$emit ( 'message' , 'Errore! Immagine non rimossa')
                 console.log ( error )
             })
+        },
+        scroll(){
+			let self = this
+			if ( this.images ){
+                if ( !this.timer){
+                    this.timer = setInterval ( () => {
+                        this.blur = 'opacity-0'
+                        self.index < self.images.length-1 ? self.index++ : self.index = 0
+                    },2000)
+                } else {
+                    clearInterval(this.timer)
+                    this.timer= null
+                }
+            }
+        },
+        imageIsScroller(id,flag){
+            this.$api.service ( 'images' ).patch ( id , { scroller: flag } )
         }
       
     },
     mounted(){
         this.loading = true
+        this.uriImages = this.$store.getters['images']
         
-        this.$api.service('pagine').find({query:{title:'scroller'}}).then ( resp=> {
-            this.page = resp.data[0]
-            this.id = resp.data[0].id
-            let images = JSON.parse(resp.data[0].json).images
-			this.images = images.map ( img => {
-				return img.replace('http://savinimilano.com/','')
-            })
-            //this.loading = false
-        })
         //this.$api.service('images').find().then( result => {
-        if ( this.$store.getters.images ){    
-            this.uriImages = this.$store.getters.images //result.data
+            //this.uriImages = result.data
+            this.images = this.$store.getters['scroller']
             this.loading = false
-        }    
+			this.scroll()
         //})
-        this.$api.service('images').on('created',(data)=>{
+        this.$api.service('images').on('removed' , ( data )=> {
             this.$store.dispatch ( 'SetImages' , this.uriImages )
         })
-        this.$api.service('images').on('removed',(data)=>{
+        this.$api.service('images').on('patched',(data)=>{
+            console.log ( 'image updated' )
             this.$store.dispatch ( 'SetImages' , this.uriImages )
         })
     }

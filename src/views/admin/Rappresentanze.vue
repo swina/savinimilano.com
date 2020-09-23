@@ -56,6 +56,7 @@ export default {
             let vm = this
             let id = rappresentanza.id
             this.$api.service('rappresentanze').patch ( id , rappresentanza ).then ( result => {
+                vm.$emit ( 'message' , 'Dati salvati')
                 vm.init()
             })
         },
@@ -69,6 +70,7 @@ export default {
                         paese: '',
                         url: ''
                     }
+                    vm.$emit ( 'message' , 'Nuova rappresentanza inserita')
                 })
             }
         },

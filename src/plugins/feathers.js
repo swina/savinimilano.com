@@ -7,7 +7,7 @@ import io from 'socket.io-client'
 import myapi from './api'
 import router from '../router'
  //'https://savinimilano-api.herokuapp.com/', 
-const socket = io( 'https://savinimilano-api.herokuapp.com/' ,{
+const socket = io( 'http://localhost:3030/',{
   transports: ['websocket'],
   polling: {
     extraHeaders: {
@@ -64,7 +64,9 @@ const api = feathers()
 
 //set current user locale
 store.commit('locale', window.navigator.userLanguage || window.navigator.language)
-
+api.service ( 'images' ).find ( ).then ( result => {
+  store.dispatch('SetImages',result.data )
+})
 /*api.service ( 'prodotti' ).find({query: { $sort : { Settore: 1 , Ordine_Campo: 1 , Divisione:1 }}}).then ( response => {
   store.dispatch ( 'SetProducts' , response.data )
   let sectors = arrayGroup ( response.data , 'Settore' , 'attivo' )

@@ -1,7 +1,7 @@
 <template>
    <div class="w-full text-right m-auto">
-	   <div class="w-64 h-32 text-center border pb-4">
-		   <img style="max-width:100%;max-height:120px;width:auto" class="mt-1 scroll m-auto" height="120" v-if="images" :src="images[index]"/>
+	   <div class="w-64 h-32 text-center border pb-4" v-if="scroller">
+		   <img style="max-width:100%;max-height:120px;width:auto" class="mt-1 scroll m-auto" height="120" v-if="images" :src="images[index].image"/>
 	   </div>
    </div>
 </template>
@@ -14,6 +14,13 @@ export default {
 		index: 0,
 		timer: null
 	}),
+	computed: {
+		scroller(){
+			this.images = this.$store.getters.scroller
+			this.scroll()
+			return true
+		}
+	},
 	watch: {
 		index(i){
 			this.blur = 'opacity-100'
@@ -34,7 +41,9 @@ export default {
 			}
 		}
 	},
-	mounted(){
+	beforeMount(){
+		this.images = this.$store.getters.images
+		/*
 		this.$api.service('pagine').find({query:{title:'scroller'}}).then ( resp=> {
 			let images = JSON.parse(resp.data[0].json).images
 			this.images = images.map ( img => {
@@ -42,6 +51,7 @@ export default {
 			})
 			this.scroll()
 		})
+		*/
 
 	}
 }

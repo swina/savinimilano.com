@@ -9,13 +9,19 @@
                     <div class="mr-2 p-1" @click="prodotti">Prodotti</div>
                     <div class="mr-2 p-1" @click="rappresentanze">Rappresentanze</div>
                     <div class="mr-2 p-1" @click="pagine">Pagine</div>
-                    <div class="mr-2 p-1" @click="logo">Logo</div>
+                    <div class="mr-2 p-1" @click="logo">Immagini</div>
+                    <div class="mr-2 p-1" @click="scroller">Scroller</div>
                 </div>
             </div>
             <div class="w-full">
-                <component :is="component" :component="component"/>
+                <component :is="component" :component="component" @message="setMessage"/>
             </div>
         </div>
+        <transition name="fade">
+            <div style="transform: translateX(-50%);left:50%;" class="border-l-4 border-blue-500 fixed bottom-0 m-auto shadow-xl mb-2 bg-gray-200 text-left p-4 w-1/2 z-50" v-if="message">
+            {{ message }}
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -25,7 +31,8 @@ import VProducts from './Products.vue'
 import VPages from './Pages.vue'
 import VRappresentanze from './Rappresentanze.vue'
 import VImages from './Images.vue'
-
+import VScroller from './Scroller'
+import VMessage from '@/components/message'
 
 export default {
     name: 'Dashboard',
@@ -34,10 +41,13 @@ export default {
         VProducts,
         VPages,
         VRappresentanze,
-        VImages
+        VImages,
+        VScroller,
+        VMessage,
     },
     data:()=>({
-        component: null
+        component: null,
+        message: ''
     }),
     beforeMount(){
         this.$api.authenticate().then ( user => {
@@ -57,8 +67,21 @@ export default {
         },
         logo(){
             this.component = VImages
+        },
+        scroller(){
+            this.component = VScroller
+        },
+        setMessage(msg){
+            this.message = msg
         }
 
+    },
+    watch:{
+        message(v){
+            if ( v ){
+                window.setTimeout(()=>{ this.message = '' }, 4000)
+            }
+        },
     }
 }
 </script>

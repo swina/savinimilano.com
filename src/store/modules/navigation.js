@@ -52,7 +52,9 @@ const navigation = {
                
             ]
         },
-        pagine: null
+        pagine: null,
+        images: null,
+        scroller: null
     },
     mutations: {
         locale ( state , locale ){
@@ -66,6 +68,12 @@ const navigation = {
         },
         pagine ( state , pagine ){
             state.pagine = pagine
+        },
+        images ( state , images ){
+            state.images = images
+        },
+        scroller ( state , scroller ){
+            state.scroller = scroller
         }
     },
     actions: {
@@ -80,6 +88,13 @@ const navigation = {
         },
         SetPagine ( { commit } , pagine ){
             commit ( 'pagine' , pagine )
+        },
+        SetImages ( { commit } , images ){
+            let scroller = images.filter ( img => {
+                return img.scroller
+            })
+            commit ( 'scroller' , scroller )
+            commit ( 'images' , images )
         }
     }
 }
