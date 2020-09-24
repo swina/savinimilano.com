@@ -7,7 +7,7 @@
         <div class="w-full flex flex-row flex-wrap p-2 m-auto justify-center">
             <div v-for="(img,i) in images" class="relative w-20 h-20 rounded border p-1 mr-2 items-center mb-2">
                 <img :src="img.image" class="w-30 h-auto max-h-100 m-auto" style="max-height:100%"/>
-                <div class="text-xs absolute hover:bg-red-500 hover:text-white top-0 right-0 cursor-pointer bg-gray-300 mr-1 rounded-full h-4 w-4" @click="imageIsScroller(img.id,0),images.splice(i,1),ids.splice(i,1),index=i-1">X</div>
+                <div class="text-xs absolute hover:bg-red-500 hover:text-white top-0 right-0 cursor-pointer bg-gray-300 mr-1 rounded-full h-4 w-4" @click="imageIsScroller(img.id,0),images.splice(i,1)">X</div>
             </div>
         </div>
         <div class="bg-gray-200"><h4>Aggiungi Immagini</h4></div>
@@ -15,7 +15,7 @@
             
             <div v-for="(img,i) in uriImages" class="relative w-32 h-32 rounded border p-1 mr-2 flex flex-col items-center mb-2">
                 <img :src="img.image" class="w-30 h-auto max-h-100 m-auto" style="max-height:100%"/>
-                <div class="text-xs absolute hover:bg-red-500 hover:text-white top-0 right-0 cursor-pointer bg-gray-300 mr-1 rounded-full h-4 w-4" @click="imageIsScroller(img.id,1),images.push({id: img.id , image: img.image})">+</div>
+                <div class="text-xs absolute hover:bg-red-500 hover:text-white top-0 right-0 cursor-pointer bg-gray-300 mr-1 rounded-full h-4 w-4" @click="imageIsScroller(img.id,1),images.push({id:img.id,image:img.image})">+</div>
             </div>
             
         </div>
@@ -66,7 +66,8 @@ export default {
     }),
     computed:{
         scroller(){
-            this.images = this.$store.getters['scroller']
+            
+            !this.images ? this.images = this.$store.getters['scroller'] : null
             return true
         }
     },
@@ -142,13 +143,17 @@ export default {
             this.loading = false
 			this.scroll()
         //})
+        let vm = this
         this.$api.service('images').on('removed' , ( data )=> {
-            this.$store.dispatch ( 'SetImages' , this.uriImages )
+            this.$api.service('images').find ().then ( result => {
+                this.$store.dispatch('SetImages',result.data)
+            })
         })
         this.$api.service('images').on('patched',(data)=>{
-            console.log ( 'image updated' )
-            this.$store.dispatch ( 'SetImages' , this.uriImages )
-        })
+            this.$api.service('images').find ().then ( result => {
+                this.$store.dispatch('SetImages',result.data)
+            })
+        }) 
     }
 }
 </script>
