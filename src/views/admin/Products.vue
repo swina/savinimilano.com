@@ -29,52 +29,64 @@
                 -->
                 
                 <div v-if="!editCategorie && data && sector">
+                    <div class="w-full text-left p-2">
+                        <button @click="addProduct"><i class="text-sm material-icons">add</i> Aggiungi Prodotto</button>
+                    </div>                
                     <template v-for="(product,i) in data">
                         <div v-if="product.Prodotto" :key="'product_' + i" class="flex flex-col">
-                            <div class="flex flex-row p-1 text-sm relative">
-                                <div class="w-2/3 flex flex-row p-1 border-b cursor-pointer" @click="setProduct(product)">
+                            <div :class="'flex flex-row p-1 text-sm cursor-pointer border-b hover:bg-blue-200 relative ' + activeProduct(product.Id)" @click="setProduct(product)">
+                                <div class="w-2/3 flex flex-row p-1 font-bold">
                                     {{product.Prodotto}}
                                 </div>
-                                <button @click="setProduct(product)" class="absolute right-0">Modifica</button>
+                                <div class="w-1/3 text-right">
+                                    <i v-if="product.Id != id" class="material-icons cursor-pointer">expand_more</i>
+                                    <i v-else class="material-icons cursor-pointer">expand_less</i>
+                                </div>
                             </div>
-                            <div :class="edit(product.Id) + ' w-full p-4 text-sm rounded bg-gray-300 '" v-if="product">
-                                <template v-for="(setting,i) in settings">
-                                    <div class="w-full text-left p-2">
-                                        <div class="w-1/4">
-                                            {{setting.label}} 
+                            <transition name="fade">
+                                <div :class="edit(product.Id) + ' w-full p-4 text-sm rounded bg-gray-300 '" v-if="product">
+                                    <template v-for="(setting,i) in settings">
+                                        <div class="w-full text-left p-2">
+                                            <div class="w-1/4 font-bold">
+                                                {{setting.label}} 
+                                            </div>
+                                            <div class="w-3/4">
+                                                <select v-model="product[setting.field]">
+                                                    <template v-for="(s,n) in setting.data">
+                                                        <option v-if="s!='null'":value="s" :key="'s_' + setting.field + '_' + n">{{s}}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="w-3/4">
-                                            <select v-model="product[setting.field]">
-                                                <template v-for="(s,n) in setting.data">
-                                                    <option v-if="s!='null'":value="s" :key="'s_' + setting.field + '_' + n">{{s}}</option>
-                                                </template>
-                                            </select>
+                                    </template>
+                                    <template v-for="(field , index) in fields">
+                                        <div :key="'edit_' + index" class="flex flex-col p-2 text-left">
+                                            <label class="font-bold">{{field.label}}</label>
+                                            <input v-if="field.type === 'text'" :type="field.type" v-model="product[field.name]"/>
+                                            <input v-if="field.type === 'file'" :type="field.type" @change="onFileChange"/>
+                                            <textarea v-if="field.type === 'textarea' && field.type != 'file'" v-model="product[field.name]"></textarea>
+                                            <input v-if="field.type === 'checkbox'" :type="field.type" v-model="product[field.name]"/>
+                                            
                                         </div>
-                                    </div>
-                                </template>
-                                <template v-for="(field , index) in fields">
-                                    <div :key="'edit_' + index" class="flex flex-col p-2 text-left">
-                                        <label>{{field.label}}</label>
-                                        <input v-if="field.type === 'text'" :type="field.type" v-model="product[field.name]"/>
-                                        <input v-if="field.type === 'file'" :type="field.type" @change="onFileChange"/>
-                                        <textarea v-if="field.type === 'textarea' && field.type != 'file'" v-model="product[field.name]"></textarea>
-                                        <input v-if="field.type === 'checkbox'" :type="field.type" v-model="product[field.name]"/>
-                                        
-                                    </div>
-                                </template>
-                                <button @click="save(i)">Salva</button>
-                            </div>
+                                    </template>
+                                    <button class="mr-2" v-if="product.Id===-1" @click="data.splice(0,1)">Elimina</button>
+                                    <button class="success" @click="save(i)">Salva</button>
+                                </div>
+                            </transition>
                         </div>    
                     </template>
                 </div>
             </div>
             <div  v-if="product" class="fixed top-0 right-0 w-1/4 p-2 mt-10 pt-10 h-screen bg-gray-200">
-                <h2>Immagine</h2>
+                <div class="text-xs">[{{ product.Prodotto }}]</div>
+                <h2 class="font-bold">Immagine</h2>
                 <img :src="image" class="m-auto"/>
                 <button v-if="image" @click="removeImage=true,image=''">Rimuovi</button>
             </div>
         </div>
-        <div v-if="loading" class="z-10 fixed top-0 right-0 bg-red-600 text-white p-2">Loading...</div>
+        <div class="z-40 bg-black bg-opacity-50 fixed top-0 left-0 h-screen w-screen text-center" v-if="loading">
+            <div class="z-10 absolute bottom-0 bg-red-600 text-white p-2">Operazione in corso ... attendere!</div>
+        </div>
     </div>
 </template>
 
@@ -85,7 +97,7 @@ export default {
     components: { VCategorie },
     data:()=>({
         data: [],
-        loading: false,
+        loading: true,
         editCategorie: false,
         component: null,
         search:'',
@@ -137,6 +149,11 @@ export default {
                 type: 'textarea'
             },
             {
+                name: 'Brand',
+                label: 'Brand',
+                type: 'text'
+            },
+            {
                 name: 'image',
                 label: 'Immagine',
                 type: 'file'
@@ -146,7 +163,23 @@ export default {
                 label: 'Attivo',
                 type: 'checkbox'
             }
-        ]
+        ],
+        empty: 
+        {   "Id": -1,
+            "Settore":"",
+            "slug":"",
+            "Ordine_campo":5,
+            "Campo_Applicativo":"",
+            "Divisione":"",
+            "Ordine":1,
+            "Categorie":"",
+            "Tipo_prodotto":"",
+            "Prodotto":"Nuovo prodotto",
+            "Brand":"",
+            "attivo":0,
+            "image":null,
+            "description":null
+        }
     }),
     watch:{
         search(v){
@@ -167,7 +200,11 @@ export default {
         active(sector){
             return sector === this.sector ? 'background: #882100; color:#fff' : ''
         },
+        activeProduct ( id ){
+            return id === this.id ? 'bg-blue-200' : ''
+        },
         filter(sector){
+            this.loading = true
             this.sector = sector
             this.data = this.$store.getters.products.filter ( prod => {
                 return prod.Settore === sector && prod.attivo === 1 && prod.Settore.length > 0
@@ -177,14 +214,6 @@ export default {
             this.divisioni = this.$arrayGroup(this.data,'Divisione','attivo')
             this.categorie = this.$arrayGroup(this.data,'Categorie','attivo')
             this.tipo = this.$arrayGroup(this.data,'Tipo_prodotto','attivo')
-            /*
-            this.settings = [
-                { label: 'Campo Applicativo' , field: 'Campo_Applicativo' , data: this.applicativi.keys },
-                { label: 'Divisione' , field: 'Divisione' , data: this.divisioni.keys },
-                { label: 'Categorie' , field: 'Categorie' , data: this.categorie.keys } ,
-                { label: 'Tipo prodotto' , field: 'Tipo_prodotto' , data: this.tipo.keys }
-            ]
-            */
             this.search = ''
             this.editCategorie= false
             this.$api.service('categorie').find( { query : { settore: this.sector } } ).then ( response => {
@@ -195,6 +224,7 @@ export default {
                     { label: 'Categorie' , field: 'Categorie' , data: this.setOptions('Categorie').keys } ,
                     { label: 'Tipo prodotto' , field: 'Tipo_prodotto' , data: this.setOptions('Tipo_prodotto').keys }
                 ]
+                this.loading = false
             })
         },
         setOptions(key){
@@ -232,13 +262,24 @@ export default {
           
         },
         initProducts(){
+            this.loading = true
             this.data = this.$store.getters.products
             this.loading = false
         },
+        addProduct(){
+            this.data.splice(0,0,this.empty)
+            this.setProduct(this.data[0])
+        },
         setProduct(product){
-            this.id = product.Id
-            this.product = product
-            this.image = product.image 
+            if ( this.id != product.Id ){
+                this.id = product.Id
+                this.product = product
+                this.image = product.image 
+            } else {
+                this.id = null
+                this.product = null
+                this.image = null
+            }
         },
         edit(id){
             return id === this.id ? '' : 'hidden'
@@ -276,16 +317,36 @@ export default {
                 product.attivo = 0 
             }
             let id = this.product.Id
-            this.$api.service('prodotti').patch ( id , product ).then ( result => {
-                this.removeImage = false
-                console.log ( result )
-                this.data[i] = result
-                this.product = result
-                this.loading = false
-                this.id = id
-            }).catch ( error => {
-                this.loading = false
-            })
+            if ( id > -1 ){
+                this.$api.service('prodotti').patch ( id , product ).then ( result => {
+                    this.removeImage = false
+                    console.log ( result )
+                    this.data[i] = result
+                    this.product = result
+                    this.loading = false
+                    this.id = id
+                    this.$emit ( 'message' , 'Prodotto salvato')
+                }).catch ( error => {
+                    this.$emit ( 'message' , 'Errore nel salvataggio del prodotto')
+                    this.loading = false
+                })
+            } else {
+                delete product.Id
+                product.Settore = this.sector
+                product.slug = this.sector
+                this.$api.service('prodotti').create ( product ).then ( result => {
+                    this.removeImage = false
+                    console.log ( result )
+                    this.data[i] = result
+                    this.product = result
+                    this.loading = false
+                    this.id = result.Id
+                    this.$emit ( 'message' , 'Prodotto creato')
+                }).catch ( error => {
+                    this.$emit ( 'message' , 'Errore nel salvataggio del prodotto')
+                    this.loading = false
+                })
+            }
         },
         dbCategorie(){
             this.settings.forEach(field=>{
@@ -310,3 +371,14 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .7s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+</style>

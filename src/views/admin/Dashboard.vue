@@ -4,7 +4,7 @@
             <v-login/>
         </div>
         <div v-if="$store.getters.logged">
-            <div class="w-full h-10 p-2 items-center bg-blue-700 text-white flex flex-row justify-between">
+            <div class="w-full h-10 p-2 relative items-center bg-blue-700 text-white flex flex-row justify-between">
                 <div class="w-3/4 flex flex-row cursor-pointer text-sm">
                     <div class="mr-2 p-1" @click="prodotti">Prodotti</div>
                     <div class="mr-2 p-1" @click="rappresentanze">Rappresentanze</div>
@@ -12,9 +12,13 @@
                     <div class="mr-2 p-1" @click="logo">Immagini</div>
                     <div class="mr-2 p-1" @click="scroller">Scroller</div>
                 </div>
+                <div class="absolute flex flex-row items-center right-0 top-0 mt-2 mr-2">
+                    <i class="material-icons">person</i> {{ $store.getters['user'].user.email }}
+                </div>
             </div>
             <div class="w-full">
                 <component :is="component" :component="component" @message="setMessage"/>
+                <h1 class="p-10" v-if="!component">savinimilano.com</h1>
             </div>
         </div>
         <transition name="fade">
@@ -22,6 +26,9 @@
             {{ message }}
             </div>
         </transition>
+        <div class="z-40 bg-black bg-opacity-50 fixed top-0 left-0 h-screen w-screen text-center" v-if="!$store.getters.images">
+            <div class="z-10 absolute bottom-0 bg-red-600 text-white p-2">Caricamento dati ... attendere!</div>
+        </div>
     </div>
 </template>
 
@@ -33,6 +40,7 @@ import VRappresentanze from './Rappresentanze.vue'
 import VImages from './Images.vue'
 import VScroller from './Scroller'
 import VMessage from '@/components/message'
+import { mapState } from 'vuex'
 
 export default {
     name: 'Dashboard',
@@ -44,6 +52,9 @@ export default {
         VImages,
         VScroller,
         VMessage,
+    },
+    computed: {
+        ...mapState ( [ 'navigation' ])
     },
     data:()=>({
         component: null,
