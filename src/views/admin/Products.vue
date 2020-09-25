@@ -333,7 +333,7 @@ export default {
             } else {
                 delete product.Id
                 product.Settore = this.sector
-                product.slug = this.sector
+                product.slug = this.$slugify(this.sector)
                 this.$api.service('prodotti').create ( product ).then ( result => {
                     this.removeImage = false
                     console.log ( result )

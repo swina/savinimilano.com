@@ -17,6 +17,11 @@ export default {
   install: function (Vue) {
 
    
+    Vue.prototype.$slugify = function ( text = '' ){
+      return text.toLowerCase()
+      .replace(/ /g,'-')
+      .replace(/[^\w-]+/g,'') 
+    }
 
     Vue.prototype.$notify = function ( msg = '' , error='' ){
       store.dispatch ( 'SetNotify' , {
@@ -26,6 +31,7 @@ export default {
       })
       window.setTimeout( closeNotify , 3000 )
     }
+
 
     Vue.prototype.$dFormat = function(d='2020-01-01'){
       //d format must be YYYY-MM-DD
