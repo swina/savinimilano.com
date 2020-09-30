@@ -179,7 +179,7 @@ export default {
             "attivo":0,
             "image":null,
             "description":null
-        }
+        },
     }),
     watch:{
         search(v){
@@ -312,8 +312,7 @@ export default {
             if ( this.removeImage ){
                 product.image = ''
             }
-            product.attivo = 1
-            if ( !this.product.attivo ){
+            if ( !this.product.attivo || this.product.attivo === 'false'){
                 product.attivo = 0 
             }
             let id = this.product.Id
