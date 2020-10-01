@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex flex-col">
+    <div class="w-full flex flex-col" v-if="$store.getters.scroller">
         <div class="w-full bg-black text-white text-xl">Scroller</div>
         <div class="w-64 h-32 text-center border pb-4 m-auto" v-if="scroller">
 		   <img style="max-width:100%;max-height:120px;width:auto" class="mt-1 scroll m-auto" height="120" v-if="images && index < images.length" :src="images[index].image"/>
@@ -47,10 +47,8 @@
 </template>
 
 <script>
-import scroller from '@/views/Scroller'
 export default {
     name: 'Scroller',
-    components: { scroller },
     data:()=>({
         modal: false,
         ids:[],
@@ -116,7 +114,7 @@ export default {
         },
         scroll(){
 			let self = this
-			if ( this.images ){
+			if ( this.images.length ){
                 if ( !this.timer){
                     this.timer = setInterval ( () => {
                         this.blur = 'opacity-0'

@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import Scroller from './Scroller.vue' 
+import ScrollerHome from '@/views/Scroller.vue' 
 
 export default {
     name: 'Header',
     components: {
-        Scroller
+        ScrollerHome
     },
     data:()=>({
         currentPath:null,
@@ -40,7 +40,7 @@ export default {
     },
     mounted(){
         this.currentPath = this.$route.path.split('/')[2]
-        this.component = Scroller
+        this.component = ScrollerHome
     }
 }
 </script>

@@ -10,7 +10,7 @@
                     <div class="mr-2 p-1" @click="rappresentanze">Rappresentanze</div>
                     <div class="mr-2 p-1" @click="pagine">Pagine</div>
                     <div class="mr-2 p-1" @click="logo">Immagini</div>
-                    <div class="mr-2 p-1" @click="scroller">Scroller</div>
+                    <div class="mr-2 p-1" @click="scrolling">Scroller</div>
                 </div>
                 <div class="absolute flex flex-row items-center right-0 top-0 mt-2 mr-2">
                     <i class="material-icons">person</i> {{ $store.getters['user'].user.email }}
@@ -38,7 +38,7 @@ import VProducts from './Products.vue'
 import VPages from './Pages.vue'
 import VRappresentanze from './Rappresentanze.vue'
 import VImages from './Images.vue'
-import VScroller from './Scroller'
+import VScrolling from './Scrolling'
 import VMessage from '@/components/message'
 import { mapState } from 'vuex'
 
@@ -50,7 +50,7 @@ export default {
         VPages,
         VRappresentanze,
         VImages,
-        VScroller,
+        VScrolling,
         VMessage,
     },
     computed: {
@@ -80,7 +80,7 @@ export default {
             this.component = VImages
         },
         scroller(){
-            this.component = VScroller
+            this.component = VScrolling
         },
         setMessage(msg){
             this.message = msg

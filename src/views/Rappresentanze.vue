@@ -26,7 +26,7 @@ export default {
     }),
     mounted(){
         this.$api.service('rappresentanze').find().then(resp=>{
-            this.items = resp.data
+            this.items = resp.data.sort ( (a,b) => a.rappresentanza < b.rappresentanza ? -1 : 1 )
         })
     }
 }
