@@ -79,7 +79,7 @@ export default {
         logo(){
             this.component = VImages
         },
-        scroller(){
+        scrolling(){
             this.component = VScrolling
         },
         setMessage(msg){
