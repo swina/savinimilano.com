@@ -1,11 +1,17 @@
 <template>
-    <div class="w-full mt-10 pb-20">
-        
+    <div class="w-full mt-10 pb-20" v-if="products">
         <div v-if="applications && applications.keys[0] != 'null'" class="w-full flex flex-row flex-wrap  items-center bg-grigio h-16 px-4">
             <template v-for="(application,index) in applications.keys">
-                <div :key="'application__' + index" :class="'cursor-pointer p-4 text-xs uppercase font-bold ' + style(index)" @click="setIndex(index)">
-                    {{application}}
-                </div>
+                <span v-if="isAttivo(products[0].Settore,application).length">
+                    <div :key="'application__' + index" :class="'cursor-pointer p-4 text-xs uppercase font-bold ' + style(index)" @click="setIndex(index)">
+                        {{application}}
+                    </div>
+                </span>
+                <span v-if="products[0].Settore === 'Farmaceutico'">
+                    <div :key="'application__' + index" :class="'cursor-pointer p-4 text-xs uppercase font-bold ' + style(index)" @click="setIndex(index)">
+                        {{application}}
+                    </div>
+                </span>
             </template>
         </div>
         
@@ -107,6 +113,16 @@ export default {
     },
     
     methods:{
+        isAttivo ( settore , campo ){
+            return this.$store.state.products.settori.filter( cat => {
+                if ( settore != 'Farmaceutico' ){
+                    return cat.settore === settore && cat.Campo_Applicativo === campo && cat.attivo === 1
+                } else {
+                    return cat.settore === settore && cat.Categorie === campo && cat.attivo === 1
+                }
+                
+            })
+        },
         hasProducts(index){
             if ( this.categoryTypes ){
                 let prods = this.categoryTypes.values[index].filter ( product => {

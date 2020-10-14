@@ -5,6 +5,7 @@ const products = {
         applications: null,
         categories: null ,
         adminCategories: null,
+        settori: null
     },
     mutations: {
         products ( state , products ){
@@ -21,6 +22,9 @@ const products = {
         },
         adminCategories ( state , adminCategories ){
             state.adminCategories = adminCategories
+        },
+        settori ( state , settori ){
+            state.settori = settori
         }
     },
     actions: {
@@ -38,6 +42,9 @@ const products = {
         },
         SetAdminCategories ( {commit} , adminCategories ){
             commit ( 'adminCategories' , adminCategories )
+        },
+        SetSettori ( { commit } , settori ){
+            commit ( 'settori' , settori )
         }
     }
 }

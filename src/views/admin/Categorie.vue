@@ -5,6 +5,7 @@
             <template v-for="(row,i) in categories">
                 <div class="w-full" v-if="row[field]!='' && row[field]">
                     <input type="text" v-model="row[field]" class="w-2/3 p-1 mb-1"/>
+                    <input type="checkbox" class="text-2xl ml-4" v-model="row.attivo"/>
                     <button class="text-xs ml-2" @click="save(row)">Salva</button>
                 </div>
             </template>

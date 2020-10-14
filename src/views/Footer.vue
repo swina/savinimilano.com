@@ -15,9 +15,12 @@
                     <div class="border-b pb-2 uppercase mb-2">
                         {{sector.title}}
                     </div>
+                    
                     <template v-for="(item,i) in sector.items">
                         <div :key="'sector_item_' + index + '_' + i" class="cursor-pointer">
+                            <span v-if="isAttivo(sector.title,item)[0]">
                             <router-link :to="'/prodotti/' + $slug(sector.title)">{{item}}</router-link>
+                            </span>
                         </div>
                     </template>
                 </div>
@@ -30,7 +33,8 @@ export default {
     name: 'Footer',
     data:()=>({
         menu: [],
-        products: null
+        products: null,
+        categories: null
     }),
     beforeMount(){
         this.$api.service ( 'prodotti' ).find({query: { $sort : { Settore: 1 , Ordine_Campo: 1 , Divisione:1 }}}).then ( response => {
@@ -44,11 +48,25 @@ export default {
             this.$store.dispatch ( 'SetCategories' , categories )
             this.createMenu ( sectors )
         })
-            this.$api.service('pagine').find().then ( response => {
+        this.$api.service ( 'categorie' ).find( ).then ( response=> {
+            this.categories = response.data 
+            this.$store.dispatch('SetSettori',response.data)
+        })
+        this.$api.service('pagine').find().then ( response => {
             this.$store.dispatch('SetPagine',response.data)
         })
     },  
     methods: {
+        isAttivo(settore,campo){
+            return this.categories.filter( cat => {
+                if ( settore != 'Farmaceutico' ){
+                    return cat.settore === settore && cat.Campo_Applicativo === campo && cat.attivo === 1
+                } else {
+                    return cat.settore === settore && cat.Categorie === campo && cat.attivo === 1
+                }
+                
+            })
+        },
         createMenu(sectors){
             sectors.keys.forEach ( sector => {
             
