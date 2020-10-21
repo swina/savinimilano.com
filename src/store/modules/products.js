@@ -5,7 +5,8 @@ const products = {
         applications: null,
         categories: null ,
         adminCategories: null,
-        settori: null
+        settori: null,
+        tipologie: null
     },
     mutations: {
         products ( state , products ){
@@ -25,6 +26,9 @@ const products = {
         },
         settori ( state , settori ){
             state.settori = settori
+        },
+        tipologie ( state , tipologie ){
+            state.tipologie = tipologie
         }
     },
     actions: {
@@ -45,6 +49,9 @@ const products = {
         },
         SetSettori ( { commit } , settori ){
             commit ( 'settori' , settori )
+        },
+        SetTipologie ( { commit } , tipologie ){
+            commit ( 'tipologie' , tipologie )
         }
     }
 }

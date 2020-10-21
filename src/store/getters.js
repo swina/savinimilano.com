@@ -8,6 +8,7 @@ const getters = {
   logged:       state => state.navigation.logged,
   sectors:      state => state.products.sectors ,
   categories:   state => state.products.categories,
+  tipologie:    state => state.products.tipologie,
   products:     state => state.products.products,
   adminCategories: state => state.products.adminCategories,
   images:       state => state.navigation.images,

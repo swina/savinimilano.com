@@ -21,8 +21,9 @@
                 <template v-for="(division,index) in divisions.keys">
                     <div :key="'division_' + index" class="flex flex-col text-left" v-if="categories">
                         <div class="product-title">{{division}}</div>
+                        
                         <template v-for="(category,i) in categories[index].keys">
-                            <div :key="'category_' + i" class="product-category ml-8 uppercase pb-1">
+                            <div :key="'category_' + i" class="product-category ml-8 uppercase pb-1" v-if="categories[index].values[i][0].attivo">
                                 <div :ref="'category_' + i" :class="'cursor-pointer ' + isActive(i,category)" @click="setProducts(category,index),currentIndex=-1">
                                     <span>{{category}}</span>
                                 </div>
@@ -38,26 +39,28 @@
             <div class="w-3/4">
                 <div class="w-full bg-grigio mb-1 border-b-4 border-white uppercase text-left text-red-600 text-sm p-2">
                     <span v-if="!category && applications">{{applications.keys[index]}}</span>
-                    <span v-if="category ">{{category}}</span>
+                    <span v-if="category">{{category}}</span>
                 </div>
                 <div class="w-full h-full" :style="background + ' ;min-height:20rem;'">
-                        
                         <div  v-if="categoryTypes" class="w-1/2 flex flex-col text-left text-xs p-4">
                             <template v-for="(type,index) in categoryTypes.keys">
-                                <div :key="'type_' + index" class="text-sm uppercase underline">
-                                    {{type}}
-                                </div>
-                                <template v-for="(product,i) in categoryTypes.values[index]">
-                                    <div :key="'product_' + index + '_' + i" class="flex flex-col" v-if="product.attivo">
-                                        <div @click="currentIndex=(index*10)+i" v-if="product.Prodotto" class="font-bold p-1 cursor-pointer hover:bg-gray-400">{{product.Prodotto}}</div>
-                                        <div v-if="product.description" :class="show(index,i) + ' flex flex-col p-4 border-t'">
-                                            <div>{{product.description}}</div>
-                                            <img v-if="product.image" :src="product.image"/>
-                                        </div>
-
+                                <div v-if="isTypeActive(type)">
+                                    <div :key="'type_' + index" class="text-sm uppercase underline">
+                                        {{type}}
                                     </div>
-                                </template>
-                                <div class="mb-2"></div>
+                                    <template v-for="(product,i) in categoryTypes.values[index]">
+                                        
+                                        <div :key="'product_' + index + '_' + i" class="flex flex-col" v-if="product.attivo">
+                                            <div @click="currentIndex=(index*10)+i" v-if="product.Prodotto" class="font-bold p-1 cursor-pointer hover:bg-gray-400">{{product.Prodotto}}</div>
+                                            <div v-if="product.description" :class="show(index,i) + ' flex flex-col p-4 border-t'">
+                                                <div>{{product.description}}</div>
+                                                <img v-if="product.image" :src="product.image"/>
+                                            </div>
+
+                                        </div>
+                                    </template>
+                                    <div class="mb-2"></div>
+                                </div>
                             </template>
                         </div>
                         
@@ -122,6 +125,10 @@ export default {
                 }
                 
             })
+        },
+        isTypeActive(type){
+            let t = this.$store.getters.tipologie.filter ( tipo => { return tipo.Tipo_prodotto === type })[0].attivo
+            return t
         },
         hasProducts(index){
             if ( this.categoryTypes ){

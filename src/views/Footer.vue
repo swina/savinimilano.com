@@ -52,6 +52,9 @@ export default {
             this.categories = response.data 
             this.$store.dispatch('SetSettori',response.data)
         })
+        this.$api.service ( 'categorie' ).find ( { query: { Tipo_prodotto : { $gt : '' }  }}).then ( response => {
+            this.$store.dispatch ( 'SetTipologie' , response.data )
+        })
         this.$api.service('pagine').find().then ( response => {
             this.$store.dispatch('SetPagine',response.data)
         })
