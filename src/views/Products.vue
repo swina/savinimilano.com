@@ -23,7 +23,7 @@
                         <div class="product-title">{{division}}</div>
                         
                         <template v-for="(category,i) in categories[index].keys">
-                            <div :key="'category_' + i" class="product-category ml-8 uppercase pb-1" v-if="categories[index].values[i][0].attivo">
+                            <div :key="'category_' + i" class="product-category ml-8 uppercase pb-1" v-if="checkCategory ( categories[index].values[i][0].Settore, category )">
                                 <div :ref="'category_' + i" :class="'cursor-pointer ' + isActive(i,category)" @click="setProducts(category,index),currentIndex=-1">
                                     <span>{{category}}</span>
                                 </div>
@@ -116,6 +116,16 @@ export default {
     },
     
     methods:{
+        checkCategory ( settore , category ){
+            let ca = this.$store.state.products.settori.filter ( cat => {
+                return cat.settore === settore && cat.Categorie === category
+            })[0]
+            if ( ca && ca.hasOwnProperty('attivo') && ca.attivo ){
+                return true
+            } else {
+                return false
+            }
+        },
         isAttivo ( settore , campo ){
             return this.$store.state.products.settori.filter( cat => {
                 if ( settore != 'Farmaceutico' ){
